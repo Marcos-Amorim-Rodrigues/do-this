@@ -1,8 +1,9 @@
 .create-tasks{
     margin-top: 10%;
     margin-bottom: 10%;
-    margin-left: 5%;
     display: grid;
+    justify-content: center;
+    align-items: center;
     grid-template-columns: 1fr;
 }
 
@@ -47,4 +48,16 @@
     transform: translate3d(2px,2px,0);
     background-color: rgb(116, 68, 179);
     border: solid rgb(91, 50, 145) 2px;
+}
+
+@media only screen and (max-width: 1000px){
+    .create-tasks input,textarea{
+        width: 300px;
+    }
+    .create-tasks button{
+        width: 334px;
+    }
+    .create-tasks{
+        padding: 15%;
+    }
 }

@@ -5,18 +5,202 @@
     position:fixed;
     grid-column-start: 1;
     display: grid;
+    grid-template-rows: 25% 50% 25%;
     align-items: center;
     justify-content: center;
+    text-align: center;
+}
+
+.sidebar-container #user-image{
+    width: 75px;
+    height: 75px;
+    object-fit: cover;
+    image-rendering: auto;
+    border-radius: 100%;
+    border: solid rgb(149, 87, 231) 2px;
+    margin-bottom: 15px;
+}
+
+.sidebar-container p{
+    margin-bottom: 15px;
+}
+
+.sidebar-container a{
+    text-decoration: none;
+}
+
+.footer{
+    height: 100%;
+    display: grid;
+    align-items: end;
+    margin-bottom: 35px;
 }
 
 .sidebar-container li{
     list-style: none;
     margin-bottom: 15px;
-    border-bottom: 2px solid #111;
+    text-decoration: underline;
+    text-decoration-color: #111;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 5px;
 }
 
 .sidebar-container li:hover{
     transition: .4s;
-    border-bottom: 2px solid rgb(149, 87, 231);
+    text-decoration-color: rgb(149, 87, 231);
     cursor: pointer;
+}
+
+.container-btn{
+    position: relative;
+    width: 30px;
+    margin-top: 15px;
+    text-align: left;
+    display: none;
+}
+
+.btn {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 0;
+    left: 0px;
+    cursor: pointer;
+}
+
+.btn-left {
+    background-color: white;
+    position: absolute;
+    height: 4px;
+    width: 15px;
+    top: 15px;
+    left: 0px;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+}
+
+.btn-left:before {
+    background-color: white;
+    position: absolute;
+    width: 15px;
+    height: 4px;
+    content: "";
+    top: -10px;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+}
+
+.btn-left:after {
+    background-color: white;
+    position: absolute;
+    width: 15px;
+    height: 4px;
+    content: "";
+    top: 10px;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+}
+  
+.btn-right {
+    background-color: white;
+    position: absolute;
+    height: 4px;
+    width: 15px;
+    top: 15px;
+    left: 15px;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+}
+
+.btn-right:before {
+    background-color: white;
+    position: absolute;
+    width: 15px;
+    height: 4px;
+    content: "";
+    top: -10px;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+}
+
+.btn-right:after {
+    background-color: white;
+    position: absolute;
+    width: 15px;
+    height: 4px;
+    content: "";
+    top: 10px;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+}
+  
+.active .btn-left {
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+    background: transparent;
+}
+
+.active .btn-left:before {
+    -webkit-transform: rotateZ(45deg) scaleX(1.4) translate(2px, 2px);
+    transform: rotateZ(45deg) scaleX(1.4) translate(2px, 2px);
+}
+
+.active .btn-left:after {
+    -webkit-transform: rotateZ(-45deg) scaleX(1.4) translate(2px, -2px);
+    transform: rotateZ(-45deg) scaleX(1.4) translate(2px, -2px);
+}
+
+.active .btn-right {
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+    background: transparent;
+}
+
+.active .btn-right:before {
+    -webkit-transform: rotateZ(-45deg) scaleX(1.4) translate(-2px, 2px);
+    transform: rotateZ(-45deg) scaleX(1.4) translate(-2px, 2px);
+}
+
+.active .btn-right:after {
+    -webkit-transform: rotateZ(45deg) scaleX(1.4) translate(-2px, -2px);
+    transform: rotateZ(45deg) scaleX(1.4) translate(-2px, -2px);
+}
+
+@media only screen and (max-width: 1000px){
+  
+    .sidebar-container{
+        width: 40px;
+        align-items: baseline;
+        transition: .8s;
+    }
+
+    .sidebar-container.active{
+        width: 100%;
+        z-index: 1000;
+        grid-template-rows: 20px 1fr 45% 20%;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .user-info.active{
+        display: none;
+    }
+
+    .navigation.active{
+        display: none;
+    }
+
+    .footer.active{
+        display: none;
+    }
+
+    .container-btn{
+        display: grid;
+        transition: .8s;
+    }
+    .container-btn.active{
+        transition: .8s;
+        width: 100vw;
+        margin-left: 15px;
+    }
 }

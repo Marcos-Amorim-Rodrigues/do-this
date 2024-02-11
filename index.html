@@ -12,16 +12,36 @@
 <body>
     <section class="container">
         <div class="sidebar-container">
-            <ul>
+            <div class="container-btn">
+                <div class="btn">
+                    <div class="btn-left"></div>
+                    <div class="btn-right"></div>
+                </div>
+            </div>
+            <ul class="user-info active">
+                <img src="./images/user.png" alt="" id="user-image">
+                <p>Bem vindo, <b>UserName</b>!</p>
+                <p>Hora de ser mais produtivo!</p>
+            </ul>
+            <ul class="navigation active">
                 <li id="create-new-tasks">Criar tarefa</li>
                 <li id="show-tasks">Ver tarefas</li>
                 <li id="dashboard">Dashboard</li>
             </ul>
+            <div class="footer active">
+                <p>© Todos direitos reservados.<br><b style="font-size: 12px; font-weight: normal;">Developed by <a href="https://github.com/Marcos-Amorim-Rodrigues/"><b style="color:rgb(149, 87, 231)">Marcos A.</b></a></b></p>
+            </div>
         </div>
         <div class="system-container">
             <div class="modal" id="created-task">
                 <div class="modal-container">
                     <h1>Sua nova tarefa foi criada!</h1>
+                    <button>Concluir</button>
+                </div>
+            </div>
+            <div class="modal" id="conclusion">
+                <div class="modal-container">
+                    <h1>Você concluiu uma tarefa!</h1>
                     <button>Concluir</button>
                 </div>
             </div>

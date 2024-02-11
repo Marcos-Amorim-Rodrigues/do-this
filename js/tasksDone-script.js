@@ -1,5 +1,6 @@
 import createTasks from './createTask-script.js';
 import initOrdenarTasks from './ordenarTasks-script.js';
+import initLoadTasks from './loadTasks-script.js';
 
 function showTasksDone() {
     initOrdenarTasks();
@@ -9,9 +10,9 @@ function showTasksDone() {
     tasksDivArray.forEach(() => {
         tasksDiv.children[0].remove();
     });
-    createTasks.userTasks.forEach(element => {
-        if(dataTask != (new Date(element.date)).toLocaleDateString()){
-            dataTask = new Date(element.date);
+    initLoadTasks.arrayDone.forEach(element => {
+        if(dataTask != (new Date(element.finalDate)).toLocaleDateString()){
+            dataTask = new Date(element.finalDate);
             const newh3 = document.createElement('h3');
             newh3.innerText = `${dataTask.toLocaleDateString('pt-BR', {weekday: 'long'})}, ${dataTask.toShortFormat()}`;
             tasksDiv.appendChild(newh3);

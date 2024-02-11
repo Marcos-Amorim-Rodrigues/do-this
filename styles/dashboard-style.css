@@ -30,3 +30,14 @@
     align-items: center;
     justify-content: center;
 }
+
+@media only screen and (max-width: 1000px){
+    .task-done{
+        grid-template-rows: auto;
+        grid-template-columns: 100%;
+    }
+    .task-done *{
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+}

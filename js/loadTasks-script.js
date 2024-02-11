@@ -1,6 +1,8 @@
 import createTasks from './createTask-script.js';
 import initOrdenarTasks from './ordenarTasks-script.js';
 
+let arrayDone = [];
+
 function initLoadTasks(){
     let indexNumber;
     function showTasks() {
@@ -29,6 +31,7 @@ function initLoadTasks(){
             newDiv.appendChild(newDate);
             const newButtonFinalizar = document.createElement('button');
             newButtonFinalizar.innerText = 'Finalizar';
+            newButtonFinalizar.addEventListener('click', finalizarTarefa);
             newDiv.appendChild(newButtonFinalizar);
             const newDivOptions = document.createElement('div');
             newDivOptions.classList = 'task-options';
@@ -43,6 +46,31 @@ function initLoadTasks(){
             newDiv.appendChild(newDivOptions);
             tasksDiv.appendChild(newDiv);
         });
+    }
+
+    function finalizarTarefa(){
+        let tasksDiv = document.querySelector('.tasks-list');
+        let tasksDivArray = Array.from(tasksDiv.children);
+        const index = tasksDivArray.indexOf(this.parentElement);
+        indexNumber = index;
+        const finalDate = new Date();
+        createTasks.userTasks[indexNumber].finalDate = finalDate;
+        arrayDone.push(createTasks.userTasks[indexNumber]);
+        createTasks.userTasks.splice(indexNumber,1);
+        initModalFinalizar();
+    }
+
+    function initModalFinalizar(){
+        const modalFinalizar = document.querySelector('#conclusion');
+        modalFinalizar.style = 'display: grid';
+        const buttonModalFinalizar = document.querySelector('#conclusion button');
+        buttonModalFinalizar.addEventListener('click', closeModalFinalizar);
+    }
+
+    function closeModalFinalizar(){
+        const modalFinalizar = document.querySelector('#conclusion');
+        modalFinalizar.style = 'display: none';
+        showTasks();
     }
 
     function modalEditTarefa(){
@@ -108,4 +136,7 @@ function initLoadTasks(){
     showTasksButton.addEventListener('click',showTasks);
 }
 
-export default initLoadTasks;
+export default {
+    initLoadTasks,
+    arrayDone
+};

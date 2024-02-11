@@ -8,6 +8,7 @@ function initCreateModal(){
             this.description = newDescription;
             this.date = newDate;
             this.id = id++;
+            this.finalDate = new Date();
         }
     }
     
