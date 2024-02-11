@@ -24,6 +24,17 @@ body{
     grid-template-columns: 350px 1fr;
 }
 
+html ::-webkit-scrollbar {
+    width: 10px;
+  }
+  html ::-webkit-scrollbar-thumb {
+  
+    background: rgb(149, 87, 231);
+  }
+  html ::-webkit-scrollbar-track {
+    background: #1a1a1a;
+  }
+
 @media only screen and (max-width: 1000px){
     .container{
         grid-template-columns: 40px 1fr;
