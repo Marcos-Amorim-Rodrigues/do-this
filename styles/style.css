@@ -6,6 +6,7 @@
 @import url(animation-style.css);
 @import url(modal-delete-style.css);
 @import url(modal-edit-style.css);
+@import url(dashboard-style.css);
 
 *{
     margin: 0;

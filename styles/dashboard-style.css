@@ -1,0 +1,32 @@
+.tasks-done{
+    margin-top: 10%;
+    margin-bottom: 10%;
+    display: grid;
+    grid-template-columns: 1fr;
+    display: none;
+}
+
+.tasks-done h1{
+    margin-left: 5%;
+}
+
+.tasks-done-list{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.task-done{
+    background: #3b3b3b;
+    height: auto;
+    width: 80%;
+    border: solid #777777 1px;
+    border-radius: 15px;
+    margin-bottom: 25px;
+    padding: 15px;
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: 20% 10% 55% 15%;
+    align-items: center;
+    justify-content: center;
+}
