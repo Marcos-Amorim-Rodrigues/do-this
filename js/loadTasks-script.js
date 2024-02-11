@@ -1,8 +1,10 @@
 import createTasks from './createTask-script.js';
+import initOrdenarTasks from './ordenarTasks-script.js';
 
 function initLoadTasks(){
     let indexNumber;
     function showTasks() {
+        initOrdenarTasks();
         let tasksDiv = document.querySelector('.tasks-list');
         let tasksDivArray = Array.from(tasksDiv.children);
         tasksDivArray.forEach(() => {
