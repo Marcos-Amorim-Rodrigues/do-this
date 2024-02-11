@@ -24,6 +24,24 @@
                     <button>Concluir</button>
                 </div>
             </div>
+            <div class="modal" id="delete-task">
+                <div class="modal-container">
+                    <h1>Tem certeza que deseja apagar sua tarefa?</h1>
+                    <button id="cancel">Cancelar</button><button id="delete">Apagar</button>
+                </div>
+            </div>
+            <div class="modal" id="edit-task">
+                <div class="modal-container">
+                    <h1>Altere as informações necessárias:</h1>
+                    <p>Título da tarefa:</p>
+                    <input type="text" id="edit-title">
+                    <p>Descrição:</p>
+                    <textarea name="" id="edit-description" cols="30" rows="10"></textarea>
+                    <p>Prazo:</p>
+                    <input type="datetime-local" id="edit-date">
+                    <button id="cancel-edit">Cancelar</button><button id="update">Atualizar</button>
+                </div>
+            </div>
             <div class="create-tasks">
                 <h1>Criar uma nova tarefa</h1>
                 <hr width="235px" style="margin: 0 0 25px 0" color="#9557E7">

@@ -1,6 +1,7 @@
 import createTasks from './createTask-script.js';
 
 function initLoadTasks(){
+    let indexNumber;
     function showTasks() {
         let tasksDiv = document.querySelector('.tasks-list');
         let tasksDivArray = Array.from(tasksDiv.children);
@@ -31,21 +32,73 @@ function initLoadTasks(){
             newDivOptions.classList = 'task-options';
             const newButtonEditar = document.createElement('button');
             newButtonEditar.innerText = 'Editar';
+            newButtonEditar.addEventListener('click', modalEditTarefa);
             newDivOptions.appendChild(newButtonEditar);
             const newButtonApagar = document.createElement('button');
             newButtonApagar.innerText = 'Apagar';
-            newButtonApagar.addEventListener('click', deleteTarefa);
+            newButtonApagar.addEventListener('click', modalDeleteTarefa);
             newDivOptions.appendChild(newButtonApagar);
             newDiv.appendChild(newDivOptions);
             tasksDiv.appendChild(newDiv);
         });
     }
 
-    function deleteTarefa(){
+    function modalEditTarefa(){
         let tasksDiv = document.querySelector('.tasks-list');
         let tasksDivArray = Array.from(tasksDiv.children);
-        const index = tasksDivArray.indexOf(this.parentElement.parentElement)
-        createTasks.userTasks.splice(index,1);
+        const index = tasksDivArray.indexOf(this.parentElement.parentElement);
+        indexNumber = index;
+        const title = document.querySelector('#edit-title');
+        const description = document.querySelector('#edit-description');
+        const date = document.querySelector('#edit-date');
+        title.value = createTasks.userTasks[index].title;
+        description.value = createTasks.userTasks[index].description;
+        date.value = `${createTasks.userTasks[index].date.toLocaleDateString('default',{year: "numeric"})}-${createTasks.userTasks[index].date.toLocaleDateString('default',{month: "2-digit"})}-${createTasks.userTasks[index].date.toLocaleDateString('default',{day: "2-digit"})}T${createTasks.userTasks[index].date.toLocaleTimeString()}`;
+        const modalEdit = document.querySelector('#edit-task');
+        modalEdit.style = 'display: grid';
+        const buttonCancelEdit = document.querySelector('#cancel-edit');
+        const buttonUpdate = document.querySelector('#update');
+        buttonCancelEdit.addEventListener('click', fecharModalEdit);
+        buttonUpdate.addEventListener('click', updateTarefa);
+    }
+
+    function updateTarefa(){
+        const title = document.querySelector('#edit-title').value;
+        const description = document.querySelector('#edit-description').value;
+        const date = new Date(document.querySelector('#edit-date').value);
+        createTasks.userTasks[indexNumber].title = title;
+        createTasks.userTasks[indexNumber].description = description;
+        createTasks.userTasks[indexNumber].date = date;
+        fecharModalEdit();
+    }
+
+    function fecharModalEdit(){
+        const modalEdit = document.querySelector('#edit-task');
+        modalEdit.style = 'display: none';
+        showTasks();
+    }
+
+    function modalDeleteTarefa(){
+        let tasksDiv = document.querySelector('.tasks-list');
+        let tasksDivArray = Array.from(tasksDiv.children);
+        const index = tasksDivArray.indexOf(this.parentElement.parentElement);
+        indexNumber = index;
+        const modalDelete = document.querySelector('#delete-task');
+        modalDelete.style = 'display: grid';
+        const buttonCancel = document.querySelector('#cancel');
+        const buttonDelete = document.querySelector('#delete');
+        buttonCancel.addEventListener('click', fecharModalDelete);
+        buttonDelete.addEventListener('click', deleteTarefa);
+    }
+
+    function deleteTarefa(){
+        createTasks.userTasks.splice(indexNumber,1);
+        fecharModalDelete();
+    }
+
+    function fecharModalDelete(){
+        const modalDelete = document.querySelector('#delete-task');
+        modalDelete.style = 'display: none';
         showTasks();
     }
     

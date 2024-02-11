@@ -1,0 +1,11 @@
+#delete-task .modal-container{
+    padding: 5%;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+#delete-task #delete{
+    background: red;
+    border-color: brown;
+}

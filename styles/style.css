@@ -4,6 +4,8 @@
 @import url(system-container-style.css);
 @import url(side-bar-style.css);
 @import url(animation-style.css);
+@import url(modal-delete-style.css);
+@import url(modal-edit-style.css);
 
 *{
     margin: 0;

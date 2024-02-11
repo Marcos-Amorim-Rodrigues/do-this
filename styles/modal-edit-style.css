@@ -1,0 +1,25 @@
+#edit-task .modal-container{
+    padding: 5%;
+    width: 100%;
+    height: 350px;
+}
+
+#edit-task .modal-container input {
+    background: #3b3b3b;
+    color: white;
+    border: solid #8d8d8d 2px;
+    width: 470px;
+    height: 15px;
+    padding: 15px;
+    color-scheme: dark;
+}
+
+#edit-task .modal-container textarea{
+    height: 15px;
+    resize: none;
+}
+
+#cancel-edit {
+    background: #8d8d8d;
+    border-color: #3b3b3b;
+}
