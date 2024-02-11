@@ -1,0 +1,39 @@
+.modal {
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    z-index: 1000;
+    background: rgb(0, 0, 0, .9);
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    display: none;
+}
+
+.modal-container {
+    background-color: #fff;
+    color:#1a1a1a;
+    width: 350px;
+    height: 150px;
+    border-radius: 5px;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+.modal-container button {
+    height: 35px;
+    background-color: rgb(149, 87, 231);
+    font-weight: bold;
+    color: white;
+    background-color: rgb(149, 87, 231);
+    transform: translate3d(0,0,0);
+    cursor: pointer;
+    border: solid rgb(116, 68, 179) 2px;
+}
+
+.modal-container button:hover {
+    transition: 0.3s;
+    transform: translate3d(2px,2px,0);
+    background-color: rgb(116, 68, 179);
+    border: solid rgb(91, 50, 145) 2px;
+}

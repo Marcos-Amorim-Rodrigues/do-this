@@ -1,0 +1,50 @@
+.create-tasks{
+    margin-top: 10%;
+    margin-bottom: 10%;
+    margin-left: 5%;
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.create-tasks h1{
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.create-tasks p{
+    margin-top: 10px;
+}
+
+.create-tasks input,textarea{
+    background: #3b3b3b;
+    color: white;
+    border: solid #8d8d8d 2px;
+    width: 470px;
+    height: 15px;
+    padding: 15px;
+    color-scheme: dark;
+}
+
+.create-tasks textarea{
+    height: 50px;
+    resize: vertical;
+}
+
+.create-tasks button{
+    margin-top: 15px;
+    width: 504px;
+    height: 50px;
+    font-weight: bold;
+    color: white;
+    background-color: rgb(149, 87, 231);
+    transform: translate3d(0,0,0);
+    cursor: pointer;
+    border: solid rgb(116, 68, 179) 2px;
+}
+
+.create-tasks button:hover {
+    transition: 0.3s;
+    transform: translate3d(2px,2px,0);
+    background-color: rgb(116, 68, 179);
+    border: solid rgb(91, 50, 145) 2px;
+}

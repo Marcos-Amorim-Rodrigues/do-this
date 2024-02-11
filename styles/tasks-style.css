@@ -1,0 +1,56 @@
+.tasks{
+    margin-top: 10%;
+    margin-bottom: 10%;
+    display: grid;
+    grid-template-columns: 1fr;
+    display: none;
+}
+
+.tasks h1{
+    margin-left: 5%;
+}
+
+.tasks-list{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.task{
+    background: #3b3b3b;
+    height: 250px;
+    width: 300px;
+    border-radius: 5%;
+    margin: 15px;
+    padding: 15px;
+    display: grid;
+    grid-template-rows: 40px 5px 1fr 30px 25px 25px;
+    align-items: center;
+}
+
+.task button {
+    height: 25px;
+    background-color: rgb(149, 87, 231);
+    font-weight: bold;
+    color: white;
+    background-color: rgb(149, 87, 231);
+    transform: translate3d(0,0,0);
+    cursor: pointer;
+    border: solid rgb(116, 68, 179) 2px;
+}
+
+.task button:hover {
+    transition: 0.3s;
+    transform: translate3d(2px,2px,0);
+    background-color: rgb(116, 68, 179);
+    border: solid rgb(91, 50, 145) 2px;
+}
+
+.task-options {
+    display: flex;
+    width: 100%;
+}
+
+.task-options button{
+    width: 100%;
+}

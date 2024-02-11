@@ -1,0 +1,22 @@
+.sidebar-container{
+    background: #111;
+    height: 100vh;
+    width: 350px;
+    position:fixed;
+    grid-column-start: 1;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar-container li{
+    list-style: none;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #111;
+}
+
+.sidebar-container li:hover{
+    transition: .4s;
+    border-bottom: 2px solid rgb(149, 87, 231);
+    cursor: pointer;
+}

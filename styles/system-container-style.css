@@ -1,0 +1,7 @@
+.system-container{
+    position: relative;
+    grid-column-start: 2;
+    height: 100vh;
+    display: grid;
+    align-items: center;
+}

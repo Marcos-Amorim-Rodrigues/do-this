@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Do This</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <section class="container">
+        <div class="sidebar-container">
+            <ul>
+                <li id="create-new-tasks">Criar tarefa</li>
+                <li id="show-tasks">Ver tarefas</li>
+            </ul>
+        </div>
+        <div class="system-container">
+            <div class="modal" id="created-task">
+                <div class="modal-container">
+                    <h1>Sua nova tarefa foi criada!</h1>
+                    <button>Concluir</button>
+                </div>
+            </div>
+            <div class="create-tasks">
+                <h1>Criar uma nova tarefa</h1>
+                <hr width="235px" style="margin: 0 0 25px 0" color="#9557E7">
+                <h3>Preencha os campos abaixo sobre a nova tarefa</h3>
+                <p>Título da tarefa:</p>
+                <input type="text" id="new-title">
+                <p>Descrição:</p>
+                <textarea name="" id="new-description" cols="30" rows="10"></textarea>
+                <p>Prazo:</p>
+                <input type="datetime-local" id="new-date">
+                <button>Cadastrar</button>
+            </div>
+            <div class="tasks">
+                <h1>Sua lista de tarefas:</h1>
+                <hr width="235px" style="margin: 15px 0 25px 5%" color="#9557E7">
+                <div class="tasks-list">
+                    <div class="task">
+                        <p>Tarefa: Teste</p>
+                        <hr color="#9557E7" width="150px" size="2px">
+                        <p>Descrição: Cupiditate placeat ipsam rerum dolorem deserunt aperiam nihil, sed molestiae id fuga perferendis eaque voluptatibus dolores eum libero, voluptatum quasi delectus soluta?</p>
+                        <p>Prazo: 15/10/2023</p>
+                        <button>Finalizar</button>
+                        <div class="task-options">
+                            <button>Editar</button>
+                            <button>Apagar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script type="module" src="./js/script.js"></script>
+</body>
+</html>
