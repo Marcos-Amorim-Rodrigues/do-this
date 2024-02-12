@@ -8,7 +8,7 @@ function initLoadTasks(){
     let indexNumber;
     async function showTasks() {
         const options = {method: 'GET', headers: {'User-Agent': 'insomnia/8.6.1'}};
-        await fetch('https://sa-east-1.aws.data.mongodb-api.com/app/data-wakcf/endpoint/data/v1', options)
+        await fetch('http://localhost:3000/', options)
         .then(response => response.json())
         .then(response => tasks = response)
         .then(response => console.log(response))
