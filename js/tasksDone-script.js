@@ -37,7 +37,7 @@ function showTasksDone() {
         newDescription.innerText = `Descrição: ${element.description}`;
         newDiv.appendChild(newDescription);
         const newDate = document.createElement('p');
-        newDate.innerText = `Prazo: ${(element.date).toLocaleDateString()} às ${(element.date).toLocaleTimeString()}`;
+        newDate.innerText = `Prazo: ${new Date((element.date)).toLocaleDateString()} às ${new Date((element.date)).toLocaleTimeString()}`;
         newDiv.appendChild(newDate);
         tasksDiv.appendChild(newDiv);
     });

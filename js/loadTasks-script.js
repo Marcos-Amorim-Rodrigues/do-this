@@ -2,17 +2,25 @@ import createTasks from './createTask-script.js';
 import initOrdenarTasks from './ordenarTasks-script.js';
 
 let arrayDone = [];
+let tasks;
 
 function initLoadTasks(){
     let indexNumber;
-    function showTasks() {
-        initOrdenarTasks();
+    async function showTasks() {
+        const options = {method: 'GET', headers: {'User-Agent': 'insomnia/8.6.1'}};
+        await fetch('http://localhost:3000/', options)
+        .then(response => response.json())
+        .then(response => tasks = response)
+        .then(response => console.log(response))
+        .catch(err => console.error(err));
+        console.log(tasks, typeof(tasks));
+        initOrdenarTasks(tasks);
         let tasksDiv = document.querySelector('.tasks-list');
         let tasksDivArray = Array.from(tasksDiv.children);
         tasksDivArray.forEach(() => {
             tasksDiv.children[0].remove();
         });
-        createTasks.userTasks.forEach(element => {
+        tasks.forEach(element => {
             const newDiv = document.createElement('div');
             newDiv.classList = 'task';
             const newTitle = document.createElement('p');
@@ -27,7 +35,7 @@ function initLoadTasks(){
             newDescription.innerText = `Descrição: ${element.description}`;
             newDiv.appendChild(newDescription);
             const newDate = document.createElement('p');
-            newDate.innerText = `Prazo: ${(element.date).toLocaleDateString()} às ${(element.date).toLocaleTimeString()}`;
+            newDate.innerText = `Prazo: ${new Date((element.date)).toLocaleDateString()} às ${new Date((element.date)).toLocaleTimeString()}`;
             newDiv.appendChild(newDate);
             const newButtonFinalizar = document.createElement('button');
             newButtonFinalizar.innerText = 'Finalizar';
@@ -40,6 +48,7 @@ function initLoadTasks(){
             newButtonEditar.addEventListener('click', modalEditTarefa);
             newDivOptions.appendChild(newButtonEditar);
             const newButtonApagar = document.createElement('button');
+            newButtonApagar.id = `${element._id}`;
             newButtonApagar.innerText = 'Apagar';
             newButtonApagar.addEventListener('click', modalDeleteTarefa);
             newDivOptions.appendChild(newButtonApagar);
@@ -109,20 +118,21 @@ function initLoadTasks(){
     }
 
     function modalDeleteTarefa(){
-        let tasksDiv = document.querySelector('.tasks-list');
-        let tasksDivArray = Array.from(tasksDiv.children);
-        const index = tasksDivArray.indexOf(this.parentElement.parentElement);
-        indexNumber = index;
         const modalDelete = document.querySelector('#delete-task');
         modalDelete.style = 'display: grid';
         const buttonCancel = document.querySelector('#cancel');
-        const buttonDelete = document.querySelector('#delete');
+        let buttonDelete = document.querySelector('.delete');
+        buttonDelete.id = this.id;
         buttonCancel.addEventListener('click', fecharModalDelete);
         buttonDelete.addEventListener('click', deleteTarefa);
     }
 
-    function deleteTarefa(){
-        createTasks.userTasks.splice(indexNumber,1);
+    async function deleteTarefa(){
+        const options = {method: 'DELETE', headers: {'User-Agent': 'insomnia/8.6.1'}};
+        await fetch(`http://localhost:3000/${this.id}`, options)
+        .then(response => response.json())
+        .then(response => console.log(response))
+        .catch(err => console.error(err));
         fecharModalDelete();
     }
 

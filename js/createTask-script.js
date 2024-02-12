@@ -12,12 +12,22 @@ function initCreateModal(){
         }
     }
     
-    function createTask() {
+    async function createTask() {
         const taskTitle = document.getElementById('new-title').value;
         const taskDescription = document.getElementById('new-description').value;
-        const taskDate = new Date(document.getElementById('new-date').value);
+        const taskDate = new Date(document.getElementById('new-date').value).getTime();
         const newTask = new Task(taskTitle, taskDescription, taskDate);
         userTasks.push(newTask);
+        const options = {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json', 'User-Agent': 'insomnia/8.6.1'},
+            body: `{"title":"${taskTitle}","description":"${taskDescription}","date":${taskDate}}`
+          };
+          
+          await fetch('http://localhost:3000/', options)
+            .then(response => response.json())
+            .then(response => console.log(response))
+            .catch(err => console.error(err));
         createModal();
     }
     
