@@ -2,6 +2,7 @@ import createTasks from './createTask-script.js';
 import initOrdenarTasks from './ordenarTasks-script.js';
 import initLoadTasks from './loadTasks-script.js';
 
+let tasks;
 async function showTasksDone() {
     const options = {method: 'GET', headers: {'User-Agent': 'insomnia/8.6.1'}};
     await fetch('https://do-this-by7l.onrender.com/', options)

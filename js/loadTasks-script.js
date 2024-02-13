@@ -69,9 +69,9 @@ function initLoadTasks(){
                 const options = {
                     method: 'PUT',
                     headers: {'Content-Type': 'application/json', 'User-Agent': 'insomnia/8.6.1'},
-                    body: `{"title":"${element.title}","description":"${element.description}","date":${element.date},"finaldate":${element.finaldate}}`
+                    body: `{"title":"${element.title}","description":"${element.description}","date":${new Date(element.date).getTime()},"finaldate":${element.finaldate}}`
                   };
-                  await fetch(`https://do-this-by7l.onrender.com/${this.id}`, options)
+                  await fetch(`https://do-this-by7l.onrender.com/${element._id}`, options)
                     .then(response => response.json())
                     .then(response => console.log(response))
                     .catch(err => console.error(err));
