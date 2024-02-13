@@ -8,7 +8,7 @@ function initLoadTasks(){
     let indexNumber;
     async function showTasks() {
         const options = {method: 'GET', headers: {'User-Agent': 'insomnia/8.6.1'}};
-        await fetch('http://localhost:3000/', options)
+        await fetch('https://do-this-by7l.onrender.com/', options)
         .then(response => response.json())
         .then(response => tasks = response)
         .then(response => console.log(response))
@@ -129,7 +129,7 @@ function initLoadTasks(){
 
     async function deleteTarefa(){
         const options = {method: 'DELETE', headers: {'User-Agent': 'insomnia/8.6.1'}};
-        await fetch(`http://localhost:3000/${this.id}`, options)
+        await fetch(`https://do-this-by7l.onrender.com/${this.id}`, options)
         .then(response => response.json())
         .then(response => console.log(response))
         .catch(err => console.error(err));
