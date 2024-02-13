@@ -44,6 +44,7 @@ function initLoadTasks(){
             const newDivOptions = document.createElement('div');
             newDivOptions.classList = 'task-options';
             const newButtonEditar = document.createElement('button');
+            newButtonEditar.id = `${element._id}`;
             newButtonEditar.innerText = 'Editar';
             newButtonEditar.addEventListener('click', modalEditTarefa);
             newDivOptions.appendChild(newButtonEditar);
@@ -83,31 +84,41 @@ function initLoadTasks(){
     }
 
     function modalEditTarefa(){
-        let tasksDiv = document.querySelector('.tasks-list');
-        let tasksDivArray = Array.from(tasksDiv.children);
-        const index = tasksDivArray.indexOf(this.parentElement.parentElement);
-        indexNumber = index;
         const title = document.querySelector('#edit-title');
         const description = document.querySelector('#edit-description');
         const date = document.querySelector('#edit-date');
-        title.value = createTasks.userTasks[index].title;
-        description.value = createTasks.userTasks[index].description;
-        date.value = `${createTasks.userTasks[index].date.toLocaleDateString('default',{year: "numeric"})}-${createTasks.userTasks[index].date.toLocaleDateString('default',{month: "2-digit"})}-${createTasks.userTasks[index].date.toLocaleDateString('default',{day: "2-digit"})}T${createTasks.userTasks[index].date.toLocaleTimeString()}`;
+        console.log(tasks);
+        tasks.forEach(task => {
+            if (this.id === task._id){
+                console.log('achei um igual');
+                title.value = task.title;
+                description.value = task.description;
+                date.value = `${new Date(task.date).toLocaleDateString('default',{year: "numeric"})}-${new Date(task.date).toLocaleDateString('default',{month: "2-digit"})}-${new Date(task.date).toLocaleDateString('default',{day: "2-digit"})}T${new Date(task.date).toLocaleTimeString()}`;
+            }
+        });
         const modalEdit = document.querySelector('#edit-task');
         modalEdit.style = 'display: grid';
         const buttonCancelEdit = document.querySelector('#cancel-edit');
         const buttonUpdate = document.querySelector('#update');
+        buttonUpdate.id = this.id;
         buttonCancelEdit.addEventListener('click', fecharModalEdit);
         buttonUpdate.addEventListener('click', updateTarefa);
     }
 
-    function updateTarefa(){
+    async function updateTarefa(){
         const title = document.querySelector('#edit-title').value;
         const description = document.querySelector('#edit-description').value;
-        const date = new Date(document.querySelector('#edit-date').value);
-        createTasks.userTasks[indexNumber].title = title;
-        createTasks.userTasks[indexNumber].description = description;
-        createTasks.userTasks[indexNumber].date = date;
+        const date = new Date(document.querySelector('#edit-date').value).getTime();
+        const options = {
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json', 'User-Agent': 'insomnia/8.6.1'},
+            body: `{"title":"${title}","description":"${description}","date":${date}}`
+          };
+          
+          await fetch(`https://do-this-by7l.onrender.com/${this.id}`, options)
+            .then(response => response.json())
+            .then(response => console.log(response))
+            .catch(err => console.error(err));
         fecharModalEdit();
     }
 
