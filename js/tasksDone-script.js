@@ -18,7 +18,7 @@ async function showTasksDone() {
         tasksDiv.children[0].remove();
     });
     tasks.forEach(element => {
-        if(element.finaldate != 0){
+        if(new Date(element.finaldate).getTime() != 0){
             if(dataTask != (new Date(element.finaldate)).toLocaleDateString()){
                 dataTask = new Date(element.finaldate);
                 const newh3 = document.createElement('h3');

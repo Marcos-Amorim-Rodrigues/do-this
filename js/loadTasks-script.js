@@ -21,7 +21,8 @@ function initLoadTasks(){
             tasksDiv.children[0].remove();
         });
         tasks.forEach(element => {
-            if(element.finaldate === 0){
+            console.log(element.finaldate)
+            if(new Date(element.finaldate).getTime() === 0){
                 const newDiv = document.createElement('div');
                 newDiv.classList = 'task';
                 const newTitle = document.createElement('p');
@@ -62,8 +63,19 @@ function initLoadTasks(){
     }
 
     function finalizarTarefa(){
-        tasks.forEach(element =>{
-            if(element._id === this.id)element.finaldate = new Date().getTime();
+        tasks.forEach(async (element) => {
+            if(element._id === this.id){
+                element.finaldate = new Date().getTime();
+                const options = {
+                    method: 'PUT',
+                    headers: {'Content-Type': 'application/json', 'User-Agent': 'insomnia/8.6.1'},
+                    body: `{"title":"${element.title}","description":"${element.description}","date":${element.date},"finaldate":${element.finaldate}}`
+                  };
+                  await fetch(`https://do-this-by7l.onrender.com/${this.id}`, options)
+                    .then(response => response.json())
+                    .then(response => console.log(response))
+                    .catch(err => console.error(err));
+            }
         });
         initModalFinalizar();
     }
@@ -85,10 +97,8 @@ function initLoadTasks(){
         const title = document.querySelector('#edit-title');
         const description = document.querySelector('#edit-description');
         const date = document.querySelector('#edit-date');
-        console.log(tasks);
         tasks.forEach(task => {
             if (this.id === task._id){
-                console.log('achei um igual');
                 title.value = task.title;
                 description.value = task.description;
                 date.value = `${new Date(task.date).toLocaleDateString('default',{year: "numeric"})}-${new Date(task.date).toLocaleDateString('default',{month: "2-digit"})}-${new Date(task.date).toLocaleDateString('default',{day: "2-digit"})}T${new Date(task.date).toLocaleTimeString()}`;
@@ -110,7 +120,7 @@ function initLoadTasks(){
         const options = {
             method: 'PUT',
             headers: {'Content-Type': 'application/json', 'User-Agent': 'insomnia/8.6.1'},
-            body: `{"title":"${title}","description":"${description}","date":${date}}`
+            body: `{"title":"${title}","description":"${description}","date":${date},"finaldate":0}`
           };
           
           await fetch(`https://do-this-by7l.onrender.com/${this.id}`, options)

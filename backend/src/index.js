@@ -51,7 +51,8 @@ app.put("/:id", async (req, res)=>{
     const task = await Task.findByIdAndUpdate(req.params.id, {
         title: req.body.title,
         description: req.body.description,
-        date: req.body.date
+        date: req.body.date,
+        finaldate: req.body.finaldate
     })
     return res.send(task)
 })
