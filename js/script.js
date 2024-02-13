@@ -5,9 +5,7 @@ import initOrdenarTasks from './ordenarTasks-script.js';
 import showTasksDone from './tasksDone-script.js';
 import mobileAdapt from './mobileAdapt-script.js';
 
-createTasks.initCreateModal();
-initLoadTasks.initLoadTasks();
 initTabNavigation();
-initOrdenarTasks();
-showTasksDone();
 mobileAdapt();
+initLoadTasks.initLoadTasks();
+createTasks.initCreateModal();
