@@ -21,6 +21,7 @@ const Task = mongoose.model('task', {
     title: String,
     description: String,
     date: Date,
+    finaldate: Date
 })
 
 app.get("/", async (req,res) => {
@@ -33,7 +34,8 @@ app.post("/", async (req,res)=>{
     const task = new Task({
         title: req.body.title,
         description: req.body.description,
-        date: req.body.date
+        date: req.body.date,
+        finaldate: req.body.finaldate
     })
 
     await task.save()

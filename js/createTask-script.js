@@ -21,7 +21,7 @@ function initCreateModal(){
         const options = {
             method: 'POST',
             headers: {'Content-Type': 'application/json', 'User-Agent': 'insomnia/8.6.1'},
-            body: `{"title":"${taskTitle}","description":"${taskDescription}","date":${taskDate}}`
+            body: `{"title":"${taskTitle}","description":"${taskDescription}","date":${taskDate},"finaldate":0}`
           };
           
           await fetch('https://do-this-by7l.onrender.com/', options)
