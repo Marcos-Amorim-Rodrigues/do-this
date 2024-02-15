@@ -7,6 +7,7 @@
 @import url(modal-delete-style.css);
 @import url(modal-edit-style.css);
 @import url(dashboard-style.css);
+@import url(modal-loading-style.css);
 
 *{
     margin: 0;
