@@ -6,6 +6,6 @@ import showTasksDone from './tasksDone-script.js';
 import mobileAdapt from './mobileAdapt-script.js';
 
 initTabNavigation();
-mobileAdapt();
+// mobileAdapt();
 initLoadTasks.initLoadTasks();
 createTasks.initCreateModal();
