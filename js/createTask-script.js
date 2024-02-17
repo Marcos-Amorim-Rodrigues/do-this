@@ -10,9 +10,9 @@ function initCreateModal() {
       this.finalDate = new Date();
     }
   }
-  const loadingModal = document.querySelector('#loading');
+  // const loadingModal = document.querySelector('#loading');
   async function createTask() {
-    beforeCreateTask();
+    // beforeCreateTask();
     const taskTitle = document.getElementById('new-title').value;
     const taskDescription = document.getElementById('new-description').value;
     const taskDate = new Date(
@@ -32,7 +32,7 @@ function initCreateModal() {
       .then((response) => response.json())
       .then((json) => {
         timer = 0;
-        beforeCreateTask();
+        // beforeCreateTask();
       })
       .catch((err) => console.error(err));
     createModal();
@@ -56,12 +56,12 @@ function initCreateModal() {
     modalDiv.style = 'display: none';
   }
 
-  function beforeCreateTask() {
-    loadingModal.style = 'display: grid';
-    setTimeout(() => {
-      loadingModal.style = 'display: none';
-    }, timer);
-  }
+  // function beforeCreateTask() {
+  //   loadingModal.style = 'display: grid';
+  //   setTimeout(() => {
+  //     loadingModal.style = 'display: none';
+  //   }, timer);
+  // }
 
   const createButton = document.querySelector('.create-tasks button');
   createButton.addEventListener('click', createTask);
