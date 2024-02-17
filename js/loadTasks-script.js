@@ -3,23 +3,26 @@ import initOrdenarTasks from './ordenarTasks-script.js';
 
 let arrayDone = [];
 let tasks;
+let timer = 5000000;
 
 function initLoadTasks() {
   const loadingModal = document.querySelector('#loading');
   async function showTasks() {
-    beforeLoadTask();
+    beforeLoadTask;
     const options = {
       method: 'GET',
-      headers: { 'User-Agent': 'insomnia/8.6.1' },
+      headers: { 'Content-Type': 'application/json' },
     };
     await fetch('https://do-this-by7l.onrender.com/', options)
       .then((response) => response.json())
       .then((response) => (tasks = response))
       .then((json) => {
         timer = 0;
-        beforeLoadTask();
+        beforeLoadTask;
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error(err);
+      });
     initOrdenarTasks(tasks);
     let tasksDiv = document.querySelector('.tasks-list');
     let tasksDivArray = Array.from(tasksDiv.children);
@@ -72,16 +75,13 @@ function initLoadTasks() {
   }
 
   function finalizarTarefa() {
-    beforeLoadTask();
+    beforeLoadTask;
     tasks.forEach(async (element) => {
       if (element._id === this.id) {
         element.finaldate = new Date().getTime();
         const options = {
           method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-            'User-Agent': 'insomnia/8.6.1',
-          },
+          headers: { 'Content-Type': 'application/json' },
           body: `{"title":"${element.title}","description":"${
             element.description
           }","date":${new Date(element.date).getTime()},"finaldate":${
@@ -92,7 +92,7 @@ function initLoadTasks() {
           .then((response) => response.json())
           .then((json) => {
             timer = 0;
-            beforeLoadTask();
+            beforeLoadTask;
           })
           .catch((err) => console.error(err));
       }
@@ -140,16 +140,13 @@ function initLoadTasks() {
   }
 
   async function updateTarefa() {
-    beforeLoadTask();
+    beforeLoadTask;
     const title = document.querySelector('#edit-title').value;
     const description = document.querySelector('#edit-description').value;
     const date = new Date(document.querySelector('#edit-date').value).getTime();
     const options = {
       method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        'User-Agent': 'insomnia/8.6.1',
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: `{"title":"${title}","description":"${description}","date":${date},"finaldate":0}`,
     };
 
@@ -176,10 +173,10 @@ function initLoadTasks() {
   }
 
   async function deleteTarefa() {
-    beforeLoadTask();
+    beforeLoadTask;
     const options = {
       method: 'DELETE',
-      headers: { 'User-Agent': 'insomnia/8.6.1' },
+      headers: { 'Content-Type': 'application/json' },
     };
     await fetch(`https://do-this-by7l.onrender.com/${this.id}`, options)
       .then((response) => response.json())
@@ -191,6 +188,14 @@ function initLoadTasks() {
     const modalDelete = document.querySelector('#delete-task');
     modalDelete.style = 'display: none';
     showTasks();
+  }
+
+  function beforeLoadTask() {
+    loadingModal.style = 'display: grid';
+    setTimeout(() => {
+      loadingModal.style = 'display: none';
+    }, timer);
+    timer = 5000000;
   }
 
   const showTasksButton = document.querySelector('#show-tasks');

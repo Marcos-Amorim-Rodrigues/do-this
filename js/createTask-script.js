@@ -1,4 +1,4 @@
-let id = 0;
+let timer = 5000000;
 let userTasks = [];
 
 function initCreateModal() {
@@ -22,10 +22,7 @@ function initCreateModal() {
     userTasks.push(newTask);
     const options = {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'User-Agent': 'insomnia/8.6.1',
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: `{"title":"${taskTitle}","description":"${taskDescription}","date":${taskDate},"finaldate":0}`,
     };
     await fetch('https://do-this-by7l.onrender.com/', options)
@@ -34,7 +31,9 @@ function initCreateModal() {
         timer = 0;
         beforeCreateTask();
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error(err);
+      });
     createModal();
   }
 

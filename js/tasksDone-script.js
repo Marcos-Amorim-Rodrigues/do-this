@@ -3,12 +3,13 @@ import initOrdenarTasks from './ordenarTasks-script.js';
 import initLoadTasks from './loadTasks-script.js';
 
 let tasks;
+let timer = 5000000;
 async function showTasksDone() {
   const loadingModal = document.querySelector('#loading');
   beforeLoadTask();
   const options = {
     method: 'GET',
-    headers: { 'User-Agent': 'insomnia/8.6.1' },
+    headers: { 'Content-Type': 'application/json' },
   };
   await fetch('https://do-this-by7l.onrender.com/', options)
     .then((response) => response.json())

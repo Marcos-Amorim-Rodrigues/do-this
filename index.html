@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <section class="container">
         <div class="sidebar-container">
@@ -20,7 +22,7 @@
             </div>
             <ul class="user-info active">
                 <img src="./images/user.png" alt="" id="user-image">
-                <p>Bem vindo, <b>UserName</b>!</p>
+                <p>Bem vindo, <b>Marcos</b>!</p>
                 <p>Hora de ser mais produtivo!</p>
             </ul>
             <ul class="navigation active">
@@ -33,6 +35,9 @@
             </div>
         </div>
         <div class="system-container">
+            <div class="modal" id="loading">
+                <span>...</span>
+            </div>
             <div class="modal" id="created-task">
                 <div class="modal-container">
                     <h1>Sua nova tarefa foi criada!</h1>
@@ -110,4 +115,5 @@
     </section>
     <script type="module" src="./js/script.js"></script>
 </body>
+
 </html>
