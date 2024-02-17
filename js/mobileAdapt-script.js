@@ -10,8 +10,6 @@ function mobileAdapt() {
   const buttonVer = document.querySelector('#show-tasks');
   const buttonDash = document.querySelector('#dashboard');
 
-  console.log('innerWidth: ', window.innerWidth);
-
   function toggleMenu() {
     if (window.innerWidth <= 1050) {
       menu.classList.toggle('active');

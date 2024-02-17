@@ -6,7 +6,7 @@ let tasks;
 let timer = 5000000;
 async function showTasksDone() {
   const loadingModal = document.querySelector('#loading');
-  //beforeLoadTask();
+  beforeLoadTask();
   const options = {
     method: 'GET',
     headers: { 'Content-Type': 'application/json' },
@@ -16,7 +16,7 @@ async function showTasksDone() {
     .then((response) => (tasks = response))
     .then((json) => {
       timer = 0;
-      //beforeLoadTask();
+      beforeLoadTask();
     })
     .catch((err) => console.error(err));
   initOrdenarTasks(tasks);
@@ -66,13 +66,13 @@ async function showTasksDone() {
     }
   });
 
-  // function //beforeLoadTask() {
-  //   loadingModal.style = 'display: grid';
-  //   setTimeout(() => {
-  //     loadingModal.style = 'display: none';
-  //   }, timer);
-  //   timer = 5000000;
-  // }
+  function beforeLoadTask() {
+    loadingModal.style = 'display: grid';
+    setTimeout(() => {
+      loadingModal.style = 'display: none';
+    }, timer);
+    timer = 5000000;
+  }
 }
 
 Date.prototype.toShortFormat = function () {
