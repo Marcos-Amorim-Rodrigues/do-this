@@ -28,12 +28,10 @@ function initCreateModal() {
     await fetch('https://do-this-by7l.onrender.com/', options)
       .then((response) => response.json())
       .then((json) => {
-        alert('catch error: ', json);
         timer = 0;
         // beforeCreateTask();
       })
       .catch((err) => {
-        alert('catch error');
         console.error(err);
       });
     createModal();

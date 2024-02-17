@@ -17,15 +17,14 @@ function initLoadTasks() {
       .then((response) => response.json())
       .then((response) => (tasks = response))
       .then((json) => {
-        alert(json);
-        alert('Then');
         timer = 0;
         //beforeLoadTask
       })
       .catch((err) => {
-        alert('Error');
         console.error(err);
       });
+
+    alert(tasks);
     initOrdenarTasks(tasks);
     let tasksDiv = document.querySelector('.tasks-list');
     let tasksDivArray = Array.from(tasksDiv.children);
@@ -84,10 +83,7 @@ function initLoadTasks() {
         element.finaldate = new Date().getTime();
         const options = {
           method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-            'User-Agent': 'insomnia/8.6.1',
-          },
+          headers: { 'Content-Type': 'application/json' },
           body: `{"title":"${element.title}","description":"${
             element.description
           }","date":${new Date(element.date).getTime()},"finaldate":${

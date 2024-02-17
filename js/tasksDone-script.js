@@ -9,7 +9,7 @@ async function showTasksDone() {
   //beforeLoadTask();
   const options = {
     method: 'GET',
-    headers: { 'User-Agent': 'insomnia/8.6.1' },
+    headers: { 'Content-Type': 'application/json' },
   };
   await fetch('https://do-this-by7l.onrender.com/', options)
     .then((response) => response.json())
