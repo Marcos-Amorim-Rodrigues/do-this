@@ -8,7 +8,7 @@ let timer = 5000000;
 function initLoadTasks() {
   const loadingModal = document.querySelector('#loading');
   async function showTasks() {
-    beforeLoadTask;
+    beforeLoadTask();
     const options = {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
@@ -18,7 +18,7 @@ function initLoadTasks() {
       .then((response) => (tasks = response))
       .then((json) => {
         timer = 0;
-        beforeLoadTask;
+        beforeLoadTask();
       })
       .catch((err) => {
         console.error(err);
@@ -75,7 +75,7 @@ function initLoadTasks() {
   }
 
   function finalizarTarefa() {
-    beforeLoadTask;
+    beforeLoadTask();
     tasks.forEach(async (element) => {
       if (element._id === this.id) {
         element.finaldate = new Date().getTime();
@@ -92,7 +92,7 @@ function initLoadTasks() {
           .then((response) => response.json())
           .then((json) => {
             timer = 0;
-            beforeLoadTask;
+            beforeLoadTask();
           })
           .catch((err) => console.error(err));
       }
@@ -140,7 +140,7 @@ function initLoadTasks() {
   }
 
   async function updateTarefa() {
-    beforeLoadTask;
+    beforeLoadTask();
     const title = document.querySelector('#edit-title').value;
     const description = document.querySelector('#edit-description').value;
     const date = new Date(document.querySelector('#edit-date').value).getTime();
@@ -173,7 +173,7 @@ function initLoadTasks() {
   }
 
   async function deleteTarefa() {
-    beforeLoadTask;
+    beforeLoadTask();
     const options = {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' },
