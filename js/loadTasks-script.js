@@ -11,16 +11,21 @@ function initLoadTasks() {
     //beforeLoadTask
     const options = {
       method: 'GET',
-      headers: { 'User-Agent': 'insomnia/8.6.1' },
+      headers: { 'Content-Type': 'application/json' },
     };
     await fetch('https://do-this-by7l.onrender.com/', options)
       .then((response) => response.json())
       .then((response) => (tasks = response))
       .then((json) => {
+        alert(json);
+        alert('Then');
         timer = 0;
         //beforeLoadTask
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        alert('Error');
+        console.error(err);
+      });
     initOrdenarTasks(tasks);
     let tasksDiv = document.querySelector('.tasks-list');
     let tasksDivArray = Array.from(tasksDiv.children);

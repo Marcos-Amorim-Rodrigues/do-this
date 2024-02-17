@@ -22,19 +22,20 @@ function initCreateModal() {
     userTasks.push(newTask);
     const options = {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'User-Agent': 'insomnia/8.6.1',
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: `{"title":"${taskTitle}","description":"${taskDescription}","date":${taskDate},"finaldate":0}`,
     };
     await fetch('https://do-this-by7l.onrender.com/', options)
       .then((response) => response.json())
       .then((json) => {
+        alert('catch error: ', json);
         timer = 0;
         // beforeCreateTask();
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        alert('catch error');
+        console.error(err);
+      });
     createModal();
   }
 
