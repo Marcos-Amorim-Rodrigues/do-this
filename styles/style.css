@@ -41,3 +41,28 @@ html ::-webkit-scrollbar {
         grid-template-columns: 40px 1fr;
     }
 }
+
+.tarefaAtrasada {
+  position: absolute;
+  background: #C75A42;
+  font-size: 12px;
+  width: 100px;
+  height: 20px;
+  display: grid;
+  align-items: center;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.tarefaAtrasadaDone {
+  position: absolute;
+  background: #C75A42;
+  font-size: 12px;
+  width: 100px;
+  height: 20px;
+  display: grid;
+  align-items: center;
+  text-align: center;
+  border-radius: 5px;
+  margin: 0;
+}

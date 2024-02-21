@@ -4,6 +4,7 @@ import initLoadTasks from './loadTasks-script.js';
 
 let tasks;
 let timer = 5000000;
+let arrayDone = [];
 async function showTasksDone() {
   const loadingModal = document.querySelector('#loading');
   beforeLoadTask();
@@ -28,6 +29,7 @@ async function showTasksDone() {
   });
   tasks.reverse().forEach((element) => {
     if (new Date(element.finaldate).getTime() != 0) {
+      arrayDone.push(element);
       if (dataTask != new Date(element.finaldate).toLocaleDateString()) {
         dataTask = new Date(element.finaldate);
         const newh3 = document.createElement('h3');
@@ -65,6 +67,51 @@ async function showTasksDone() {
       tasksDiv.appendChild(newDiv);
     }
   });
+
+  const tarefas = document.querySelectorAll('.task-done');
+  tarefas.forEach((newDiv, index) => {
+    if (
+      new Date(arrayDone[index].date) < new Date(arrayDone[index].finaldate)
+    ) {
+      const divTarefaAtrasada = document.createElement('div');
+      divTarefaAtrasada.classList = 'tarefaAtrasadaDone';
+      const tarefasAtrasadaText = document.createElement('p');
+      tarefasAtrasadaText.innerText = 'Tarefa atrasou';
+      divTarefaAtrasada.appendChild(tarefasAtrasadaText);
+      newDiv.appendChild(divTarefaAtrasada);
+      divTarefaAtrasada.style = `top: ${
+        newDiv.getBoundingClientRect().top - 7
+      }px`;
+    }
+  });
+
+  window.addEventListener('resize', reposicionarAtrasada);
+
+  function reposicionarAtrasada() {
+    const divsAtrasadasDone = document.querySelectorAll('.tarefaAtrasadaDone');
+    divsAtrasadasDone.forEach((element) => {
+      element.remove();
+    });
+
+    const tarefasDone = document.querySelectorAll('.task-done');
+
+    tarefasDone.forEach((newDiv, index) => {
+      if (
+        arrayDone[index] &&
+        new Date(arrayDone[index].date) < new Date(arrayDone[index].finaldate)
+      ) {
+        const divTarefaAtrasadaDone = document.createElement('div');
+        divTarefaAtrasadaDone.classList = 'tarefaAtrasadaDone';
+        const tarefasAtrasadaTextDone = document.createElement('p');
+        tarefasAtrasadaTextDone.innerText = 'Tarefa atrasou';
+        divTarefaAtrasadaDone.appendChild(tarefasAtrasadaTextDone);
+        newDiv.appendChild(divTarefaAtrasadaDone);
+        divTarefaAtrasadaDone.style = `top: ${
+          newDiv.getBoundingClientRect().top - 7
+        }px`;
+      }
+    });
+  }
 
   function beforeLoadTask() {
     loadingModal.style = 'display: grid';

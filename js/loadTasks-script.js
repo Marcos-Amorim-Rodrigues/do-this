@@ -2,12 +2,15 @@ import createTasks from './createTask-script.js';
 import initOrdenarTasks from './ordenarTasks-script.js';
 
 let arrayDone = [];
+let arrayDoneDone = [];
 let tasks;
 let timer = 5000000;
 
 function initLoadTasks() {
   const loadingModal = document.querySelector('#loading');
   async function showTasks() {
+    arrayDone = [];
+    arrayDoneDone = [];
     beforeLoadTask();
     const options = {
       method: 'GET',
@@ -31,6 +34,7 @@ function initLoadTasks() {
     });
     tasks.forEach((element) => {
       if (new Date(element.finaldate).getTime() === 0) {
+        arrayDone.push(element);
         const newDiv = document.createElement('div');
         newDiv.classList = 'task';
         const newTitle = document.createElement('p');
@@ -70,6 +74,44 @@ function initLoadTasks() {
         newDivOptions.appendChild(newButtonApagar);
         newDiv.appendChild(newDivOptions);
         tasksDiv.appendChild(newDiv);
+      } else arrayDoneDone.push(element);
+    });
+    const tarefas = document.querySelectorAll('.task');
+    tarefas.forEach((newDiv, index) => {
+      if (new Date(arrayDone[index].date) < new Date()) {
+        const divTarefaAtrasada = document.createElement('div');
+        divTarefaAtrasada.classList = 'tarefaAtrasada';
+        const tarefasAtrasadaText = document.createElement('p');
+        tarefasAtrasadaText.innerText = 'Tarefa atrasada';
+        divTarefaAtrasada.appendChild(tarefasAtrasadaText);
+        newDiv.appendChild(divTarefaAtrasada);
+        divTarefaAtrasada.style = `top: ${
+          newDiv.getBoundingClientRect().top - 7
+        }px`;
+      }
+    });
+  }
+
+  window.addEventListener('resize', reposicionarAtrasada);
+  function reposicionarAtrasada() {
+    const divsAtrasadas = document.querySelectorAll('.tarefaAtrasada');
+    divsAtrasadas.forEach((element) => {
+      element.remove();
+    });
+
+    const tarefas = document.querySelectorAll('.task');
+
+    tarefas.forEach((newDiv, index) => {
+      if (arrayDone[index] && new Date(arrayDone[index].date) < new Date()) {
+        const divTarefaAtrasada = document.createElement('div');
+        divTarefaAtrasada.classList = 'tarefaAtrasada';
+        const tarefasAtrasadaText = document.createElement('p');
+        tarefasAtrasadaText.innerText = 'Tarefa atrasada';
+        divTarefaAtrasada.appendChild(tarefasAtrasadaText);
+        newDiv.appendChild(divTarefaAtrasada);
+        divTarefaAtrasada.style = `top: ${
+          newDiv.getBoundingClientRect().top - 7
+        }px`;
       }
     });
   }
